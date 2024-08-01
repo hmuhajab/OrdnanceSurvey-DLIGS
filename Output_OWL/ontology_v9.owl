@@ -1,0 +1,1206 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/hanan/ontologies/2022/5/untitled-ontology-71"
+         xmlns="http://www.semanticweb.org/hanan/ontologies/2022/5/untitled-ontology-71#"
+         xmlns:opla="http://ontologydesignpatterns.org/opla-sd#"
+         xmlns:geos="http://www.opengis.net/ont/geosparql#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/hanan/ontologies/2022/5/untitled-ontology-71">
+  <owl:imports rdf:resource="http://www.opengis.net/ont/geosparql"/>
+</owl:Ontology>
+
+<owl:ObjectProperty rdf:about="http://www.opengis.net/ont/geosparql#ehInside">
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  <owl:inverseOf rdf:resource="http://www.opengis.net/ont/geosparql#sfContains"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="http://www.opengis.net/ont/geosparql#SpatialObject"/>
+  <rdfs:range rdf:resource="http://www.opengis.net/ont/geosparql#SpatialObject"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="http://www.opengis.net/ont/geosparql#sfContains">
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="http://www.opengis.net/ont/geosparql#SpatialObject"/>
+  <rdfs:range rdf:resource="http://www.opengis.net/ont/geosparql#SpatialObject"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="http://www.opengis.net/ont/geosparql#sfTouches">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#composed_of">
+  <owl:inverseOf rdf:resource="#part_of"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Administrative_Hierarchy"/>
+  <rdfs:range rdf:resource="#Administrative_Unit"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#part_of">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Administrative_Unit"/>
+  <rdfs:range rdf:resource="#Administrative_Hierarchy"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#disjoint">
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#proximity_directional">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Administrative_Unit"/>
+  <rdfs:range rdf:resource="#Administrative_Unit"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#touch_N">
+  <rdfs:subPropertyOf rdf:resource="#proximity_directional"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#touch_S">
+  <rdfs:subPropertyOf rdf:resource="#proximity_directional"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#touch_W">
+  <rdfs:subPropertyOf rdf:resource="#proximity_directional"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#touch_E">
+  <rdfs:subPropertyOf rdf:resource="#proximity_directional"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#touch_NE">
+  <rdfs:subPropertyOf rdf:resource="#proximity_directional"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#touch_SE">
+  <rdfs:subPropertyOf rdf:resource="#proximity_directional"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#touch_NW">
+  <rdfs:subPropertyOf rdf:resource="#proximity_directional"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#touch_SW">
+  <rdfs:subPropertyOf rdf:resource="#proximity_directional"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#level_in_hierarchy">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+</owl:DatatypeProperty>
+
+<owl:AnnotationProperty rdf:about="http://ontologydesignpatterns.org/opla-sd#entityPosition"/>
+
+<owl:AnnotationProperty rdf:about="http://ontologydesignpatterns.org/opla-sd#entityPositionX"/>
+
+<owl:AnnotationProperty rdf:about="http://ontologydesignpatterns.org/opla-sd#entityPositionY"/>
+
+<owl:Class rdf:about="#Administrative_Hierarchy">
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#composed_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Administrative_Unit">
+  <rdfs:subClassOf rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_Hierarchy"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <opla:entityPosition>
+  </opla:entityPosition>
+</owl:Class>
+
+<owl:Class rdf:about="#Administrative_of_UK">
+  <rdfs:subClassOf rdf:resource="#Administrative_Hierarchy"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Community_Administrative_Unit">
+  <rdfs:subClassOf rdf:resource="#Administrative_Unit"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#District_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_of_UK"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#proximity_directional"/>
+      <owl:someValuesFrom rdf:resource="#Community_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#level_in_hierarchy"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#District_Administrative_Unit">
+  <rdfs:subClassOf rdf:resource="#Administrative_Unit"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#County_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_of_UK"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#proximity_directional"/>
+      <owl:someValuesFrom rdf:resource="#District_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#level_in_hierarchy"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#County_Administrative_Unit">
+  <rdfs:subClassOf rdf:resource="#Administrative_Unit"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#Region_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_of_UK"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#proximity_directional"/>
+      <owl:someValuesFrom rdf:resource="#County_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#level_in_hierarchy"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Region_Administrative_Unit">
+  <rdfs:subClassOf rdf:resource="#Administrative_Unit"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_of_UK"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#proximity_directional"/>
+      <owl:someValuesFrom rdf:resource="#Region_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#level_in_hierarchy"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Named_Entity">
+  <rdfs:subClassOf rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#Postal_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_Hierarchy"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#proximity_directional"/>
+      <owl:someValuesFrom rdf:resource="#Named_Entity"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <opla:entityPosition>
+  </opla:entityPosition>
+</owl:Class>
+
+<owl:Class rdf:about="#Postal_Unit">
+  <rdfs:subClassOf rdf:resource="#Administrative_Unit"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#Postal_Sector"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#Ward_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_of_UK"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#proximity_directional"/>
+      <owl:someValuesFrom rdf:resource="#Postal_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Postal_Area">
+  <rdfs:subClassOf rdf:resource="#Administrative_Unit"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_of_UK"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Postal_District">
+  <rdfs:subClassOf rdf:resource="#Administrative_Unit"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#Postal_Area"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_of_UK"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Postal_Sector">
+  <rdfs:subClassOf rdf:resource="#Administrative_Unit"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#Postal_District"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_of_UK"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Ward_Administrative_Unit">
+  <rdfs:subClassOf rdf:resource="#Administrative_Unit"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.opengis.net/ont/geosparql#ehInside"/>
+      <owl:someValuesFrom rdf:resource="#District_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#part_of"/>
+      <owl:someValuesFrom rdf:resource="#Administrative_of_UK"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#proximity_directional"/>
+      <owl:someValuesFrom rdf:resource="#Ward_Administrative_Unit"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#level_in_hierarchy"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment>This correspond to Ward</rdfs:comment>
+</owl:Class>
+
+<rdf:Description rdf:about="#Abbey_Cwmhir">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Powys_District"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Powys_District">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Powys"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<Administrative_Hierarchy rdf:about="#Administrative_hierarchy_of_Wales_2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#Administrative_of_UK"/>
+</Administrative_Hierarchy>
+
+<rdf:Description rdf:about="#Aber-craf_and_Ystradgynlais">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Powys_District"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<Administrative_Hierarchy rdf:about="#Administrative_hierarchy_of_Wales_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#Administrative_of_UK"/>
+</Administrative_Hierarchy>
+
+<rdf:Description rdf:about="#Aber_Valley">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Caerphilly"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Caerphilly">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Gwent"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberaeron">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Ceredigion"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Ceredigion">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Dyfed"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberaeron_town">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Ceredigion"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberavon">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Neath_Port_Talbot"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Neath_Port_Talbot">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#West_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberavon_Community">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Neath_Port_Talbot"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberbargoed">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Caerphilly"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Abercarn">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Caerphilly"/>
+  <geos:sfTouches rdf:resource="#Aberbargoed"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberdulais">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Neath_Port_Talbot"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberffraw">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Isle_of_Anglesey"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Isle_of_Anglesey">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Gwynedd"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Abergele">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Conwy"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Conwy">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Clwyd"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Abergele_Pensarn">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Conwy"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Abergwili">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Carmarthenshire"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Carmarthenshire">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Dyfed"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Abergwili_Community">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberkenfig">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Bridgend"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Bridgend">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Mid_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberporth">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Ceredigion"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Abertillery">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Blaenau_Gwent"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Blaenau_Gwent">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Gwent"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Abertillery_Community">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Blaenau_Gwent"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Aberwheeler">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Denbighshire"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Denbighshire">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Clwyd"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Adamsdown">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Cardiff"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Cardiff">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#South_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Adamsdown_Community">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Cardiff"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<Administrative_Hierarchy rdf:about="#Administrative_hierarchy_of_England">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#Administrative_of_UK"/>
+</Administrative_Hierarchy>
+
+<Administrative_Hierarchy rdf:about="#Administrative_hierarchy_of_Scotland">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type rdf:resource="#Administrative_of_UK"/>
+</Administrative_Hierarchy>
+
+<rdf:Description rdf:about="#Aethwy">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Isle_of_Anglesey"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Ammanford">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Carmarthenshire"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Badminton">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Blaenau_Gwent"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Banwy_Llanfihangel_and_Llanwddyn">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Powys_District"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Barletta_House">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Butetown"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Butetown">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Cardiff"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Barry_town">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Vale_of_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Vale_of_Glamorgan">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#South_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Baruc_Barry">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Vale_of_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Bedlinog">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Merthyr_Tydfil"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Merthyr_Tydfil">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Mid_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Bedlinog_Community">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Merthyr_Tydfil"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Bettws">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Bridgend"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Betws-y-Coed">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Conwy"/>
+  <geos:sfTouches rdf:resource="#Abergele_Pensarn"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Betws-y-Coed_Community">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Birchgrove">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Swansea"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Swansea">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#West_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Bishopston">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Swansea"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<County_Administrative_Unit rdf:about="#Gwent">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#South_East_Wales"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_E rdf:resource="#Mid_Glamorgan"/>
+  <touch_NW rdf:resource="#Powys"/>
+  <touch_SW rdf:resource="#South_Glamorgan"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</level_in_hierarchy>
+</County_Administrative_Unit>
+
+<rdf:Description rdf:about="#Bodelwyddan">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Denbighshire"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Bon-y-maen">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Swansea"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Brackla">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Bridgend"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<County_Administrative_Unit rdf:about="#Mid_Glamorgan">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#South_Central_of_Wales"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_W rdf:resource="#Gwent"/>
+  <touch_W rdf:resource="#Powys"/>
+  <touch_W rdf:resource="#South_Glamorgan"/>
+  <touch_W rdf:resource="#West_Glamorgan"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</level_in_hierarchy>
+</County_Administrative_Unit>
+
+<rdf:Description rdf:about="#Bro_Aberffraw">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Isle_of_Anglesey"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Bute_Street">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Butetown"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Buttrills_Barry">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Vale_of_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<Postal_Area rdf:about="#CF">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Area>
+
+<Administrative_of_UK rdf:about="#Postal_Administrative_hierarchy">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Administrative_of_UK>
+
+<Postal_District rdf:about="#CF10">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_District>
+
+<Postal_Sector rdf:about="#CF10_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF10"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Sector>
+
+<Postal_Unit rdf:about="#CF10_1AA">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF10_1"/>
+  <geos:ehInside rdf:resource="#Cathays"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Unit>
+
+<rdf:Description rdf:about="#Cathays">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Cardiff"/>
+  <geos:sfTouches rdf:resource="#Adamsdown"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<Postal_Sector rdf:about="#CF10_2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF10"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Sector>
+
+<Postal_Unit rdf:about="#CF10_2AA">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF10_2"/>
+  <geos:ehInside rdf:resource="#Cathays"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Unit>
+
+<Postal_Sector rdf:about="#CF10_3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF10"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Sector>
+
+<Postal_Unit rdf:about="#CF10_3AT">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF10_3"/>
+  <geos:ehInside rdf:resource="#Cathays"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Unit>
+
+<Postal_Sector rdf:about="#CF10_4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF10"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Sector>
+
+<Postal_Unit rdf:about="#CF10_4AF">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Butetown"/>
+  <geos:ehInside rdf:resource="#CF10_4"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Unit>
+
+<Postal_Sector rdf:about="#CF10_5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF10"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Sector>
+
+<Postal_Unit rdf:about="#CF10_5AF">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Butetown"/>
+  <geos:ehInside rdf:resource="#CF10_5"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Postal_Administrative_hierarchy"/>
+</Postal_Unit>
+
+<County_Administrative_Unit rdf:about="#South_Glamorgan">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_NE rdf:resource="#Gwent"/>
+  <touch_E rdf:resource="#Mid_Glamorgan"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</level_in_hierarchy>
+</County_Administrative_Unit>
+
+<rdf:Description rdf:about="#Cardiff_University">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#CF10_3AT"/>
+  <geos:ehInside rdf:resource="#Cathays"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<County_Administrative_Unit rdf:about="#Dyfed">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#South_West_Wales"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_W rdf:resource="#Gwynedd"/>
+  <touch_W rdf:resource="#Powys"/>
+  <touch_W rdf:resource="#West_Glamorgan"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</level_in_hierarchy>
+</County_Administrative_Unit>
+
+<rdf:Description rdf:about="#Cathays_Community">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Cardiff"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<County_Administrative_Unit rdf:about="#Clwyd">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#North_East_Wales"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_W rdf:resource="#Gwynedd"/>
+  <touch_S rdf:resource="#Powys"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</level_in_hierarchy>
+</County_Administrative_Unit>
+
+<Region_Administrative_Unit rdf:about="#North_East_Wales">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_W rdf:resource="#North_West_Wales"/>
+  <touch_S rdf:resource="#Mid_of_Wales"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</level_in_hierarchy>
+</Region_Administrative_Unit>
+
+<rdf:Description rdf:about="#Corwen">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Conwy"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Cyfarthfa">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Merthyr_Tydfil"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</level_in_hierarchy>
+</rdf:Description>
+
+<rdf:Description rdf:about="#David_Street">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Cathays"/>
+</rdf:Description>
+
+<Region_Administrative_Unit rdf:about="#South_West_Wales">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_N rdf:resource="#North_West_Wales"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</level_in_hierarchy>
+</Region_Administrative_Unit>
+
+<rdf:Description rdf:about="#Flintshire">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Clwyd"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<Region_Administrative_Unit rdf:about="#South_East_Wales">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_S rdf:resource="#South_Central_of_Wales"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</level_in_hierarchy>
+</Region_Administrative_Unit>
+
+<County_Administrative_Unit rdf:about="#Gwynedd">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#North_West_Wales"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_E rdf:resource="#Clwyd"/>
+  <touch_SE rdf:resource="#Powys"/>
+  <touch_E rdf:resource="#Dyfed"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</level_in_hierarchy>
+</County_Administrative_Unit>
+
+<Region_Administrative_Unit rdf:about="#North_West_Wales">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_E rdf:resource="#North_East_Wales"/>
+  <touch_S rdf:resource="#South_West_Wales"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</level_in_hierarchy>
+</Region_Administrative_Unit>
+
+<rdf:Description rdf:about="#Gwynedd_District">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Gwynedd"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<Region_Administrative_Unit rdf:about="#South_Central_of_Wales">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_N rdf:resource="#Mid_of_Wales"/>
+  <touch_N rdf:resource="#South_East_Wales"/>
+  <touch_W rdf:resource="#South_West_Wales"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</level_in_hierarchy>
+</Region_Administrative_Unit>
+
+<Region_Administrative_Unit rdf:about="#Mid_of_Wales">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:sfTouches rdf:resource="#North_East_Wales"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_N rdf:resource="#North_East_Wales"/>
+  <touch_S rdf:resource="#South_Central_of_Wales"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</level_in_hierarchy>
+</Region_Administrative_Unit>
+
+<rdf:Description rdf:about="#Monmouthshire">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Gwent"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<County_Administrative_Unit rdf:about="#West_Glamorgan">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#South_Central_of_Wales"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_E rdf:resource="#Mid_Glamorgan"/>
+  <touch_NE rdf:resource="#Powys"/>
+  <touch_E rdf:resource="#Dyfed"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</level_in_hierarchy>
+</County_Administrative_Unit>
+
+<rdf:Description rdf:about="#Newport">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Gwent"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Pembrokeshire">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Dyfed"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<County_Administrative_Unit rdf:about="#Powys">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Mid_of_Wales"/>
+  <geos:sfTouches rdf:resource="#Gwynedd"/>
+  <geos:sfTouches rdf:resource="#West_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+  <touch_SE rdf:resource="#Gwent"/>
+  <touch_N rdf:resource="#Clwyd"/>
+  <touch_E rdf:resource="#Mid_Glamorgan"/>
+  <touch_SW rdf:resource="#West_Glamorgan"/>
+  <touch_E rdf:resource="#Dyfed"/>
+  <touch_NW rdf:resource="#Gwynedd"/>
+  <level_in_hierarchy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</level_in_hierarchy>
+</County_Administrative_Unit>
+
+<rdf:Description rdf:about="#Rhondda_Cynon_Taf">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Mid_Glamorgan"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="#St_Mary_Street">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Cathays"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Torfaen">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <geos:ehInside rdf:resource="#Gwent"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="#Wrexham">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_1"/>
+  <part_of rdf:resource="#Administrative_hierarchy_of_Wales_2"/>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">550.3186348376498</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">350.4790929845629</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">88.03745171364977</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">242.12265708072465</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">450.4208767046666</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">199.59309564661314</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">49.578264145126866</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">739.6206115949893</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">58.90416863667681</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">4.34740301980594</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">269.8321134895263</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">580.0630743100251</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">519.5568390161048</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">109.98055712699416</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">9.592735514977704</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">450.06084856137</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">27.612968568634887</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">216.17496551990737</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">76.8413218101207</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">275.58546612787075</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">569.6533119929117</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">29.899758331985552</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">160.34197795535792</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">134.5218312613507</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">469.80164167285704</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">430.32941623222405</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description>
+  <opla:entityPositionX rdf:datatype="http://www.w3.org/2001/XMLSchema#double">93.05745663100289</opla:entityPositionX>
+  <opla:entityPositionY rdf:datatype="http://www.w3.org/2001/XMLSchema#double">76.95292685789427</opla:entityPositionY>
+  <rdfs:comment xml:lang="en">This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view.</rdfs:comment>
+</rdf:Description>
+
+
+</rdf:RDF>
